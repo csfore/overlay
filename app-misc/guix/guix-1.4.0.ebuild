@@ -12,12 +12,13 @@ KEYWORDS="~amd64"
 RESTRICT="strip"
 
 BDEPEND="virtual/pkgconfig
-		dev-scheme/guile-gnutls
-		dev-scheme/guile-git
-		dev-scheme/guile-json
-		dev-scheme/guile-sqlite3
-		dev-scheme/guile-gcrypt
-		dev-scheme/guile-zlib
-		dev-scheme/guile-lzlib"
+	>=dev-scheme/guile-3.0.0
+	dev-scheme/guile-gnutls
+	dev-scheme/guile-git
+	dev-scheme/guile-json
+	dev-scheme/guile-sqlite3
+	dev-scheme/guile-gcrypt
+	dev-scheme/guile-zlib
+	dev-scheme/guile-lzlib"
 
 QA_PREBUILT="*.go"
