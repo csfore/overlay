@@ -33,9 +33,6 @@ QA_PREBUILT="*.go"
 src_install() {
 	default
 
-	# Guix fails to compile if it stores its ccache
-	#find "${D}" -name '*.go' -delete || die
-
 	systemd_dounit "${FILESDIR}"/guix-publish.service
 	systemd_dounit "${FILESDIR}"/guix-gc.service
 	systemd_dounit "${FILESDIR}"/guix-daemon.service
@@ -44,10 +41,8 @@ src_install() {
 	systemd_dounit "${FILESDIR}"/guix-gc.timer
 
 	doinitd "${FILESDIR}"/guix-daemon
+}
 
-	#elog "WARNING: There is currently a bug in the ccache Guile generates"
-	#elog "for Guix, resulting in compile failures unpon a rebuild."
-	#elog "To remedy this, run:"
-	#elog "# rm /usr/lib64/guile/3.0/site-ccache/guix/build-system/clojure.go\n\n"
-	elog "To allow for parallel installs, create more guix users in the guix group"
+pkg_postinst() {
+	einfo "To allow for parallel installs, create more users in the guix group"
 }
