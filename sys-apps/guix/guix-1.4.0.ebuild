@@ -44,5 +44,8 @@ src_install() {
 }
 
 pkg_postinst() {
+	ewarn "Currently rebuilding with Guix's current ccache breaks compilation, to"
+	ewarn "remedy this, run:"
+	ewarn "rm /usr/lib64/guile/3.0/site-ccache/guix/build/java-utils.go"
 	einfo "To allow for parallel installs, create more users in the guix group"
 }
