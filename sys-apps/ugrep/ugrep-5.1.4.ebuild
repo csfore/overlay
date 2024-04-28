@@ -3,6 +3,8 @@
 
 EAPI=8
 
+inherit shell-completion
+
 DESCRIPTION="A fast, drop-in replacement for GNU grep"
 HOMEPAGE="https://ugrep.com/"
 SRC_URI="https://github.com/Genivia/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
@@ -10,18 +12,23 @@ SRC_URI="https://github.com/Genivia/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="7zip brotli boost bzip3 cpu_flags_arm_neon cpu_flags_x86_avx2 cpu_flags_x86_sse2 +lzma lz4 mmap +pcre2 +zlib zstd"
+IUSE="7zip brotli boost bzip3 cpu_flags_arm_neon cpu_flags_x86_avx2 cpu_flags_x86_sse2 +lzma lz4 +mmap +pcre2 +zlib zstd"
 
-BDEPEND="brotli? ( app-arch/brotli )
-  boost? ( dev-libs/boost )
-  bzip3? ( app-arch/bzip3 )
-  lz4? ( app-arch/lz4 )
-  lzma? ( app-arch/xz-utils )
-  pcre2? ( dev-libs/libpcre2 )
-  zlib? ( sys-libs/zlib )
-  zstd? ( app-arch/zstd )
-  virtual/pkgconfig
+COMMON_DEPEND="
+	brotli? ( app-arch/brotli )
+	boost? ( dev-libs/boost )
+	bzip3? ( app-arch/bzip3 )
+	lz4? ( app-arch/lz4 )
+	lzma? ( app-arch/xz-utils )
+	pcre2? ( dev-libs/libpcre2 )
+	zlib? ( sys-libs/zlib )
+	zstd? ( app-arch/zstd )
+	virtual/pkgconfig
 "
+
+RDEPEND="${COMMON_DEPEND}"
+
+DEPEND="${COMMON_DEPEND}"
 
 src_configure() {
 	local myeconfargs=(
@@ -46,9 +53,9 @@ src_configure() {
 
 src_install() {
 	default
-	dobashcomp "${S}/completions/bash/*"
-	dofishcomp "${S}/completions/fish/*"
-	dozshcomp "${S}/completions/zsh/_*"
+	dobashcomp "${S}"/completions/bash/*
+	dofishcomp "${S}"/completions/fish/*
+	dozshcomp "${S}"/completions/zsh/_*
 }
 
 src_test() {
