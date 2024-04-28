@@ -52,5 +52,7 @@ src_install() {
 }
 
 src_test() {
+	# emake check is run first by default in Portage but
+	# that doesn't actually run the tests, emake test does
 	emake test
 }
