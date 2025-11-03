@@ -1,0 +1,13 @@
+app-portage/genlop
+app-portage/gentoolkit
+app-portage/iwdevtools
+app-portage/mgorny-dev-scripts
+app-portage/nattka
+app-portage/pfl
+app-portage/pycargoebuild
+dev-debug/gdb
+dev-debug/valgrind
+dev-debug/rr
+dev-util/cvise
+dev-util/pkgdev
+sys-devel/crossdev
